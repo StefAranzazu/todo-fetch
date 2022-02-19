@@ -11,7 +11,7 @@ const TodoList = () => {
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/stefaranzazu", {
 			method: "GET",
 		}).then((response) => {
-			if (response.status == 404) {
+			if (response.status == 404 || response.status == 500) {
 				createUser("stefaranzazu");
 			} else {
 				getList("stefaranzazu");
@@ -24,7 +24,7 @@ const TodoList = () => {
 			method: "GET",
 		})
 			.then((response) => response.json())
-			.then((data) => setTodo(data));
+			.then((data) => setTodo(data), setCounter(counter + 1));
 	};
 
 	const createUser = (user) => {
@@ -38,17 +38,7 @@ const TodoList = () => {
 			.then((response) => response.json())
 			.then((data) => setTodo(data));
 	};
-	useEffect(() => {
-		fetch("https://assets.breatheco.de/apis/fake/todos/user/stefaranzazu", {
-			method: "GET",
-			headers: {
-				"Content-type": "application/json",
-			},
-		})
-			.then((response) => response.json())
-			.then((data) => setTodo(data))
-			.catch((error) => console.log("[ERROR TO GET LIST", error));
-	}, []);
+
 	const addTodo = (text) => {
 		console.log("texto", text);
 		let newTodo = [...todo, { label: text, done: false }];

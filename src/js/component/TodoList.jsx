@@ -107,7 +107,7 @@ const TodoList = () => {
 						onChange={(e) => setInputValue(e.target.value)}
 						onKeyPressCapture={(e) => handleKey(e)}
 						type="text"
-						size="72"
+						size="72.5"
 						value={inputValue}
 						placeholder="What need to be done?"
 					/>

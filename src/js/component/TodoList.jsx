@@ -11,7 +11,7 @@ const TodoList = () => {
 		fetch("https://assets.breatheco.de/apis/fake/todos/user/stefaranzazu", {
 			method: "GET",
 		}).then((response) => {
-			if (response.status == 404 || response.status == 500) {
+			if (response.status == 404) {
 				createUser("stefaranzazu");
 			} else {
 				getList("stefaranzazu");
